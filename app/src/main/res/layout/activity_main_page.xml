@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainPage">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <ViewFlipper
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/flippervw"></ViewFlipper>
+
+        </RelativeLayout>
+
+        <GridLayout
+                android:columnCount="2"
+                android:rowCount="3"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="12dp"
+                    android:layout_margin="12dp">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:src="@drawable/icons8home"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
+                    <TextView
+                            android:layout_marginTop="12dp"
+                            android:textSize="15sp"
+                            android:text="Home Cleaning"
+                            android:fontFamily="Yu Gothic UI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="12dp"
+                    android:layout_margin="12dp">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:src="@drawable/icons8mite"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
+                    <TextView
+                            android:layout_marginTop="12dp"
+                            android:textSize="15sp"
+                            android:text="Pest Control"
+                            android:fontFamily="Yu Gothic UI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="12dp"
+                    android:layout_margin="12dp">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:src="@drawable/icons8paintbrush"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
+                    <TextView
+                            android:layout_marginTop="12dp"
+                            android:textSize="15sp"
+                            android:text="Paiting"
+                            android:fontFamily="Yu Gothic UI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="12dp"
+                    android:layout_margin="12dp">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:src="@drawable/femaleskin"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
+                    <TextView
+                            android:layout_marginTop="12dp"
+                            android:textSize="15sp"
+                            android:text="Skin Care"
+                            android:fontFamily="Yu Gothic UI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="12dp"
+                    android:layout_margin="12dp">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:src="@drawable/womanhair"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
+                    <TextView
+                            android:layout_marginTop="12dp"
+                            android:textSize="15sp"
+                            android:text="Hair Care"
+                            android:fontFamily="Yu Gothic UI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    app:cardElevation="6dp"
+                    app:cardCornerRadius="12dp"
+                    android:layout_margin="12dp">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:src="@drawable/crownandlipstick"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"/>
+                    <TextView
+                            android:layout_marginTop="12dp"
+                            android:textSize="15sp"
+                            android:text="Makeup"
+                            android:fontFamily="Yu Gothic UI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </GridLayout>
+    </LinearLayout>
+
+</ScrollView>
