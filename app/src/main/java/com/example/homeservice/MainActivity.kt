@@ -8,18 +8,18 @@ import android.widget.RelativeLayout
 
 class MainActivity : AppCompatActivity() {
 
-    //internal lateinit var relativeLayout: RelativeLayout
+    internal lateinit var relativeLayout: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*relativeLayout=findViewById(R.id.rlay)
+        relativeLayout=findViewById(R.id.rlay)
 
         relativeLayout.setOnClickListener {
             val sharedIntent = Intent(this@MainActivity, MainPage::class.java)
             startActivity(sharedIntent)
-        }*/
+        }
 
         Handler().postDelayed({
             val homeIntent = Intent(this@MainActivity, MainPage::class.java)

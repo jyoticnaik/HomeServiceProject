@@ -38,7 +38,9 @@
                     android:layout_columnWeight="1"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp">
+                    android:layout_margin="12dp"
+                    android:id="@+id/homecleaning_cv"
+                    android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
                         android:orientation="vertical"
@@ -55,9 +57,9 @@
                             android:layout_marginTop="12dp"
                             android:textSize="15sp"
                             android:text="Home Cleaning"
-                            android:fontFamily="Yu Gothic UI"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            app:fontFamily="@font/arima_madurai"/>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -68,7 +70,9 @@
                     android:layout_columnWeight="1"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp">
+                    android:layout_margin="12dp"
+                    android:id="@+id/pest_control_cv"
+                    android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
                         android:orientation="vertical"
@@ -87,7 +91,8 @@
                             android:text="Pest Control"
                             android:fontFamily="Yu Gothic UI"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            app:fontFamily="@font/arima_madurai"/>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -98,7 +103,9 @@
                     android:layout_columnWeight="1"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp">
+                    android:layout_margin="12dp"
+                    android:id="@+id/painting_cv"
+                    android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
                         android:orientation="vertical"
@@ -117,7 +124,8 @@
                             android:text="Paiting"
                             android:fontFamily="Yu Gothic UI"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            app:fontFamily="@font/arima_madurai"/>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -127,7 +135,9 @@
                     android:layout_columnWeight="1"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp">
+                    android:layout_margin="12dp"
+                    android:id="@+id/skincare_cv"
+                    android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
                         android:orientation="vertical"
@@ -146,7 +156,8 @@
                             android:text="Skin Care"
                             android:fontFamily="Yu Gothic UI"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            app:fontFamily="@font/arima_madurai"/>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -156,7 +167,9 @@
                     android:layout_columnWeight="1"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp">
+                    android:layout_margin="12dp"
+                    android:id="@+id/haircare_cv"
+                    android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
                         android:orientation="vertical"
@@ -175,7 +188,8 @@
                             android:text="Hair Care"
                             android:fontFamily="Yu Gothic UI"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            app:fontFamily="@font/arima_madurai"/>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -185,7 +199,9 @@
                     android:layout_columnWeight="1"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="12dp"
-                    android:layout_margin="12dp">
+                    android:layout_margin="12dp"
+                    android:id="@+id/makeup_cv"
+                    android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
                         android:orientation="vertical"
@@ -204,7 +220,8 @@
                             android:text="Makeup"
                             android:fontFamily="Yu Gothic UI"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            app:fontFamily="@font/arima_madurai"/>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>

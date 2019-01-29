@@ -1,13 +1,24 @@
 package com.example.homeservice
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.support.v7.widget.CardView
+import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import android.widget.ViewFlipper
 
-class MainPage : AppCompatActivity() {
+class MainPage : AppCompatActivity(), View.OnClickListener {
 
     internal var v_fliper: ViewFlipper? = null
+    private var homecv: CardView? = null
+    private var pestcv: CardView? = null
+    private var paintcv: CardView? = null
+    private var skincv: CardView? = null
+    private var haircv: CardView? = null
+    private var makeupcv: CardView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +36,24 @@ class MainPage : AppCompatActivity() {
         for (image in images) {
             flipperImages(image)
         }
+
+        //Defining cards
+        homecv = findViewById(R.id.homecleaning_cv)
+        pestcv = findViewById(R.id.pest_control_cv)
+        paintcv = findViewById(R.id.painting_cv)
+        skincv = findViewById(R.id.skincare_cv)
+        haircv = findViewById(R.id.haircare_cv)
+        makeupcv = findViewById(R.id.makeup_cv)
+
+
+        //Adding onClick Listener;
+        homecv!!.setOnClickListener(this)
+        pestcv!!.setOnClickListener(this)
+        paintcv!!.setOnClickListener(this)
+        skincv!!.setOnClickListener(this)
+        haircv!!.setOnClickListener(this)
+        makeupcv!!.setOnClickListener(this)
+
     }
 
     fun flipperImages(image: Int) {
@@ -38,5 +67,47 @@ class MainPage : AppCompatActivity() {
         //animation
         v_fliper?.setInAnimation(this, android.R.anim.slide_in_left)
         v_fliper?.setOutAnimation(this, android.R.anim.slide_out_right)
+    }
+
+    override fun onClick(v: View?) {
+        val i: Intent
+        val t = Toast.makeText(this, "Hello There!", Toast.LENGTH_SHORT)
+
+        if (v != null) {
+            when (v.id) {
+
+                R.id.homecleaning_cv -> {i=Intent(this,HomeCleaningPage::class.java).apply {
+                    putExtra("CardSelected","homecv")
+                }
+                    startActivity(i)}
+
+                R.id.pest_control_cv -> {i=Intent(this,HomeCleaningPage::class.java).apply {
+                    putExtra("CardSelected","pestcv")
+                }
+                    startActivity(i)}
+
+                R.id.painting_cv -> {i=Intent(this,HomeCleaningPage::class.java).apply {
+                    putExtra("CardSelected","paintcv")
+                }
+                    startActivity(i)}
+
+                R.id.skincare_cv -> {i=Intent(this,HomeCleaningPage::class.java).apply {
+                    putExtra("CardSelected","skincv")
+                }
+                    startActivity(i)}
+
+                R.id.haircare_cv -> {i=Intent(this,HomeCleaningPage::class.java).apply {
+                    putExtra("CardSelected","haircv")
+                }
+                    startActivity(i)}
+
+                R.id.makeup_cv -> {i=Intent(this,HomeCleaningPage::class.java).apply {
+                    putExtra("CardSelected","makeupcv")
+                }
+                    startActivity(i)}
+            }
+        }
+        else
+            Toast.makeText(this,"Empty",Toast.LENGTH_SHORT)
     }
 }
