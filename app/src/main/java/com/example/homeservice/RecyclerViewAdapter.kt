@@ -2,6 +2,7 @@ package com.example.homeservice
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -49,6 +50,11 @@ class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>,
         holder.parentlayout.setOnClickListener {
             Log.d(TAG, "onClick: clickedon: " + mImageName[position])
             Toast.makeText(mContext, mImageName[position], Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(mContext, DescpActivity::class.java)
+            intent.putExtra("desc_head", mImageName.get(position))
+            mContext.startActivity(intent)
+
         }
 
     }
