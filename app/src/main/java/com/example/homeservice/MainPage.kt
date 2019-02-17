@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.support.v7.widget.CardView
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import android.support.v7.widget.Toolbar
 import android.widget.ViewFlipper
 
 class MainPage : AppCompatActivity(), View.OnClickListener {
@@ -23,6 +26,9 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
+
+        val toolbar = findViewById<Toolbar>(R.id.app_bar)
+        setSupportActionBar(toolbar)
 
         val images = intArrayOf(
             R.drawable.painting,
@@ -69,9 +75,34 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
         v_fliper?.setOutAnimation(this, android.R.anim.slide_out_right)
     }
 
+    //Adds menu to the action bar
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    //function to be added for Onclick of menu
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val i:Intent
+        return when(item.itemId){
+            R.id.action_login ->{
+                i= Intent(this,LoginActivity::class.java)
+                startActivity(i)
+                true
+            }
+            R.id.action_cart->{
+                Toast.makeText(this,"Cart Page Not created yet.",Toast.LENGTH_LONG).show()
+                true
+            }
+            else->super.onOptionsItemSelected(item)
+        }
+        //return super.onOptionsItemSelected(item)
+    }
+
     override fun onClick(v: View?) {
         val i: Intent
-        val t = Toast.makeText(this, "Hello There!", Toast.LENGTH_SHORT)
+        //val t = Toast.makeText(this, "Hello There!", Toast.LENGTH_SHORT)
 
         if (v != null) {
             when (v.id) {
@@ -108,6 +139,6 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
             }
         }
         else
-            Toast.makeText(this,"Empty",Toast.LENGTH_SHORT)
+            Toast.makeText(this,"Empty",Toast.LENGTH_SHORT).show()
     }
 }

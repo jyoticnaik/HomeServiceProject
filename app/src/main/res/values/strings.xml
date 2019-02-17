@@ -2,4 +2,15 @@
     <string name="app_name">HomeService</string>
     <string name="HS">HS</string>
     <string name="HomeService">HomeService</string>
+    <string name="actionbar_loginmenu">Login</string>
+    <string name="actionbar_addtocart">Add To Cart</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="forgetpass">Forgot Password?</string>
+    <string name="homecleaning">Home Cleaning</string>
+    <string name="pestcontrol">Pest Control</string>
+    <string name="painting">Painting</string>
+    <string name="skincare">Skin Care</string>
+    <string name="hairskin">Hair Care</string>
+    <string name="makeup">Make up</string>
 </resources>
