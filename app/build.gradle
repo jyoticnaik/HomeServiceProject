@@ -47,4 +47,12 @@ dependencies {
     //circle imageview
     implementation 'de.hdodenhof:circleimageview:3.0.0'
 
+    //App level dependency for firebase
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
+    //For authentiction
+    implementation 'com.google.firebase:firebase-auth:16.0.1'
 }
+
+//Firebase
+apply plugin: 'com.google.gms.google-services'

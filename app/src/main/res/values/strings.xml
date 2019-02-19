@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HomeService</string>
+    <string name="app_name">Home Service</string>
     <string name="HS">HS</string>
     <string name="HomeService">HomeService</string>
     <string name="actionbar_loginmenu">Login</string>
@@ -13,4 +13,6 @@
     <string name="skincare">Skin Care</string>
     <string name="hairskin">Hair Care</string>
     <string name="makeup">Make up</string>
+    <string name="emailid">Email Id</string>
+    <string name="confrimpass">Confirm Password</string>
 </resources>
