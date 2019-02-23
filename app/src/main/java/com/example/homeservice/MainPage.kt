@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import android.support.v7.widget.Toolbar
 import android.widget.ViewFlipper
+import com.google.firebase.auth.FirebaseAuth
 
 class MainPage : AppCompatActivity(), View.OnClickListener {
 
@@ -23,12 +24,16 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
     private var haircv: CardView? = null
     private var makeupcv: CardView? = null
 
+    private var firebaseAuth: FirebaseAuth? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
 
         val toolbar = findViewById<Toolbar>(R.id.app_bar)
         setSupportActionBar(toolbar)
+
+        //TODO: Adding changes in actionbar if user already logged in.
 
         val images = intArrayOf(
             R.drawable.painting,

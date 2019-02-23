@@ -5,7 +5,6 @@
     <string name="actionbar_loginmenu">Login</string>
     <string name="actionbar_addtocart">Add To Cart</string>
     <string name="password">Password</string>
-    <string name="username">Username</string>
     <string name="forgetpass">Forgot Password?</string>
     <string name="homecleaning">Home Cleaning</string>
     <string name="pestcontrol">Pest Control</string>
@@ -15,4 +14,20 @@
     <string name="makeup">Make up</string>
     <string name="emailid">Email Id</string>
     <string name="confrimpass">Confirm Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="fname">First Name</string>
+    <string name="lname">Last Name</string>
+    <string name="mobno">Contact No</string>
+    <string name="roomno">Number of rooms</string>
+    <string name="address">Address</string>
+    <string name="housetype">House Type</string>
+    <string name="proceed">PROCEED</string>
+
+    <string-array name="housetypelist">
+        <item>Apartment</item>
+        <item>Bungalow</item>
+        <item>Farmhouse</item>
+        <item>Hotel</item>
+        <item>Penthouse</item>
+    </string-array>
 </resources>

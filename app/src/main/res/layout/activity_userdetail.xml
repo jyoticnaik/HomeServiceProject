@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".UserdetailActivity"
+        android:background="#1A272541">
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="566dp">
+
+        <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="5"
+                android:columnCount="2"
+                android:layout_gravity="center"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp">
+
+            <TextView
+                    android:id="@+id/fnametv"
+                    android:text="@string/fname"
+                    android:paddingLeft="0dp"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="50dp"
+                    android:paddingRight="50dp"
+                    android:paddingBottom="10dp"
+            />
+
+            <EditText
+                    android:inputType="text"
+                    android:hint="@string/fname"
+                    android:autofillHints="@string/fname"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:id="@+id/fnameet"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="193dp"
+                    android:background="@drawable/grp2"/>
+
+
+            <TextView
+                    android:id="@+id/lnametv"
+                    android:text="@string/lname"
+                    android:paddingBottom="10dp"
+            />
+            <EditText
+                    android:id="@+id/lnameet"
+                    android:inputType="text"
+                    android:hint="@string/lname"
+                    android:autofillHints="@string/lname"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:maxLength="20"
+                    android:layout_width="193dp"
+                    android:background="@drawable/grp2"
+                    android:layout_marginBottom="10dp"/>
+
+
+            <TextView
+                    android:id="@+id/contnotv"
+                    android:text="@string/mobno"
+                    android:paddingBottom="10dp"
+
+            />
+            <EditText
+                    android:id="@+id/contnoet"
+                    android:hint="@string/mobno"
+                    android:autofillHints="@string/mobno"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:maxLength="20"
+                    android:layout_width="193dp"
+                    android:background="@drawable/grp2"
+                    android:inputType="phone"
+                    android:layout_marginBottom="10dp"
+            />
+
+            <TextView
+                    android:id="@+id/addtv"
+                    android:text="@string/address"
+                    android:paddingBottom="10dp"
+            />
+
+            <EditText
+                    android:id="@+id/addet"
+                    android:hint="@string/address"
+                    android:autofillHints="@string/address"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_width="193dp"
+                    android:background="@drawable/grp2"
+                    android:inputType="textPostalAddress"
+                    android:layout_marginBottom="10dp"
+            />
+
+            <TextView
+                    android:id="@+id/roomnotv"
+                    android:text="@string/roomno"
+                    android:paddingBottom="10dp"
+            />
+            <EditText
+                    android:hint="@string/roomno"
+                    android:autofillHints="@string/roomno"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:id="@+id/roomnoet"
+                    android:layout_height="wrap_content"
+                    android:layout_width="193dp"
+                    android:background="@drawable/grp2"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:layout_marginBottom="10dp"
+            />
+
+        </GridLayout>
+    </ScrollView>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginRight="50dp"
+            android:layout_weight="10"
+            android:id="@+id/user_submit"
+            android:text="@string/proceed"
+            android:background="#272541"
+            android:textSize="20sp"
+            android:elevation="6dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="100dp"/>
+
+</LinearLayout>
