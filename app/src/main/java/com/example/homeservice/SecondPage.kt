@@ -13,6 +13,12 @@ class HomeCleaningPage : AppCompatActivity() {
     //vars
     private val mNames = ArrayList<String>()
     private val mImageUrl = ArrayList<Int>()
+
+    //Description for each service
+    private val mDesc=ArrayList<String>()
+
+    private val mPrice=ArrayList<String>()
+
     //private val mImageUrl = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +48,21 @@ class HomeCleaningPage : AppCompatActivity() {
          if (s == "homecv") {
             mImageUrl.add(R.drawable.deepclean)
             mNames.add("Deep Home Cleaning")
+             mDesc.add("1.Complete Deep Cleaning of all areas of the house including Bathroom,Kitchen,Dining Room,Bedroom & Balcony." +
+                     "2.Deep Cleaning and cleaning of curtains,sofa set and chairs using Professional grade cleaning solution." +
+                     "3.Cleaning equipment and vacuum cleaners by proffessionals cleaning staff." +
+                     "4.Deep Cleaning of external surfaces,cabinets and appliance exteriors, and removal of grease and oil stains." +
+                     "5.Deep cleaning of floor, WC, seat, sink, fittings and walls." +
+                     "6.Deep cleaning of floor, windows, furniture and light fittings." +
+                     "7.Deep cleaning grill work and windows." +
+                     "8.Dry vacuum cleaning of sofa, carpent, and curtains." +
+                     "9.Cleaning of fans,lights,windows,railing,cabinets and switchboards.")
+             mPrice.add("1RK - Rs 2500" +
+                     "1BHK – Rs 3000" +
+                     "2BHK – RS 4000" +
+                     "3BHK – RS 5000" +
+                     "4BHK – RS 6000" +
+                     "5 BHK – RS 7000")
 
             mImageUrl.add(R.drawable.carpetcleaning)
             mNames.add("Furniture Polishing & Cleaning")
@@ -135,7 +156,7 @@ class HomeCleaningPage : AppCompatActivity() {
 
             initRecycleView()
         } else {
-            Toast.makeText(this, "Error", Toast.LENGTH_LONG)
+            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
         }
     }
 

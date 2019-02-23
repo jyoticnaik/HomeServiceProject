@@ -22,7 +22,10 @@ class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>,
 
     private var mImageName = ArrayList<String>()
     private var mImage = ArrayList<Int>()
-    private final val TAG="RecyclerViewAdapter"
+    private var mDesc = ArrayList<String>()
+    private var mPrice=ArrayList<String>()
+
+    private val TAG="RecyclerViewAdapter"
 
     init {
         Log.d(TAG,"Entered RecyclerViewAapter")
@@ -53,6 +56,8 @@ class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>,
 
             val intent = Intent(mContext, DescpActivity::class.java)
             intent.putExtra("desc_head", mImageName.get(position))
+            intent.putExtra("desc",mDesc)
+            intent.putExtra("price",mPrice)
             mContext.startActivity(intent)
 
         }

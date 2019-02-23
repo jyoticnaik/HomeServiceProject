@@ -32,6 +32,38 @@ class DescpActivity : AppCompatActivity() {
 
             setHead(head)
         }
+
+        //Declared in SecondPage class, sent extra through RecyclerView class
+        if(intent.hasExtra("desc")){
+            Log.d(TAG,"getIncomingIntent: found intent extras description")
+
+            val desc=intent.getStringExtra("desc")
+
+            setDesc(desc)
+        }
+
+        if(intent.hasExtra("price")){
+            Log.d(TAG,"getIncomingIntent: found intent extras price")
+
+            val price=intent.getStringExtra("price")
+
+            setPrice(price)
+        }
+
+    }
+
+    @SuppressLint("LongLogTag")
+    private fun setPrice(price:String){
+        Log.d(TAG, "setting price")
+        val page_price = findViewById<TextView>(R.id.serv_price)
+        page_price.text = price
+    }
+
+    @SuppressLint("LongLogTag")
+    private fun setDesc(desc: String){
+        Log.d(TAG, "setting description")
+        val page_desc = findViewById<TextView>(R.id.Description)
+        page_desc.text = desc
     }
 
     @SuppressLint("LongLogTag")
