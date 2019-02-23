@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.layout_listitem.view.*
 
 import java.util.ArrayList
 
-class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>, private val mContext: Context) :
+class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>,mDesc: ArrayList<String>,mPrice: ArrayList<String>, private val mContext: Context) :
     RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
     private var mImageName = ArrayList<String>()
@@ -31,6 +31,8 @@ class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>,
         Log.d(TAG,"Entered RecyclerViewAapter")
         this.mImageName = mImageName
         this.mImage = mImage
+        this.mDesc = mDesc
+        this.mPrice = mPrice
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -56,8 +58,8 @@ class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>,
 
             val intent = Intent(mContext, DescpActivity::class.java)
             intent.putExtra("desc_head", mImageName.get(position))
-            intent.putExtra("desc",mDesc)
-            intent.putExtra("price",mPrice)
+            intent.putExtra("desc",mDesc.get(position))
+            intent.putExtra("price",mPrice.get(position))
             mContext.startActivity(intent)
 
         }

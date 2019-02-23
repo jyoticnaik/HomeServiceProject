@@ -8,36 +8,47 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="10"
+            android:layout_weight="15"
             android:id="@+id/desc_name"
             android:elevation="6dp"
             android:background="#D6DBDF"
             android:textStyle="bold"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:gravity="center_vertical"
-            android:paddingLeft="10dp"/>
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="55">
 
     <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/Description"
-            android:layout_weight="60"
+            android:paddingTop="20dp"
             android:background="#EAECEE"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:paddingLeft="10dp"
-            android:gravity="center_horizontal"
+            android:paddingRight="10dp"
+            android:gravity="start"
             />
 
+    </ScrollView>
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
-            android:layout_weight="20"
-            android:id="@+id/serv_price"
+                android:layout_weight="20"
+              android:paddingTop="20dp"
+                android:id="@+id/serv_price"
               android:layout_marginRight="10dp"
               android:layout_marginLeft="10dp"
-              android:textSize="15dp"
+              android:textSize="15sp"
               android:paddingLeft="10dp"
+              android:paddingRight="10dp"
               android:gravity="center_horizontal"/>
 
     <Button android:layout_width="match_parent"
@@ -45,9 +56,9 @@
             android:layout_marginRight="10dp"
             android:layout_weight="10"
             android:id="@+id/submit_btn"
-            android:text="Proceed"
+            android:text="@string/proceed"
             android:background="#272541"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:elevation="6dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
