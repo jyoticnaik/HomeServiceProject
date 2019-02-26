@@ -23,6 +23,16 @@
     <string name="housetype">House Type</string>
     <string name="proceed">PROCEED</string>
 
+
+    <string name="welcome">Welcome to HomeService. Please Login.</string>
+    <string name="comm">Communicate</string>
+    <string name="importtxt">Import</string>
+    <string name="gallary">Gallary</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="tools">Tools</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+
     <string-array name="housetypelist">
         <item>Apartment</item>
         <item>Bungalow</item>
