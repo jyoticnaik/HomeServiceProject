@@ -1,11 +1,13 @@
 package com.example.homeservice
 
+import android.app.ActivityOptions
 import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.util.Pair
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
@@ -75,6 +77,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     //start the main activity
+                    progressDialog!!.dismiss()
                     finish()
                     startActivity(Intent(this,MainPage::class.java))
                 } else {
@@ -107,11 +110,26 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
         if (v === signuphp) {
             finish() //Closes the activity from background
-            startActivity(Intent(this, RegistrationPage::class.java))
+            //startActivity(Intent(this, RegistrationPage::class.java))
+            val i = Intent(this, RegistrationPage::class.java)
+            val pair = Pair.create<View,String>(signuphp, "signupTrans")
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                val options = ActivityOptions.makeSceneTransitionAnimation(this, pair)
+                startActivity(i, options.toBundle())
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            } else {
+                startActivity(i)
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            }
+
         }
         if(v == fgtpss){
             forgetpass()
         }
+    }
 
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }

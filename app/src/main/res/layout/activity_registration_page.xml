@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".RegistrationPage"
-        android:background="#1A272541">
+        android:background="@drawable/custombck">
 
     <EditText
             android:id="@+id/regEmailTxt"
@@ -16,7 +16,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="150dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
@@ -82,11 +82,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="200dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
             android:layout_marginBottom="0dp"
             android:layout_gravity="center"
-            android:elevation="4dp"/>
+            android:elevation="4dp"
+            android:transitionName="signupTrans"/>
 
 </LinearLayout>

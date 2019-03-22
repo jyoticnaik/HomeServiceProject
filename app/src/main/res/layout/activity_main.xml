@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity"
         android:id="@+id/rlay"
-        android:background="#272541"
+        android:background="@drawable/custombck2"
         tools:ignore="ContentDescription">
 
     <ImageView

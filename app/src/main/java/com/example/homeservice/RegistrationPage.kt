@@ -11,6 +11,9 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 
 class RegistrationPage : AppCompatActivity(), View.OnClickListener {
+
+
+
     override fun onClick(v: View?) {
         if (v === buttonLogin) {
             //OnClick of button
@@ -44,6 +47,7 @@ class RegistrationPage : AppCompatActivity(), View.OnClickListener {
             firebaseAuth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     //User successfully Registered
+                    progressDialog!!.dismiss()
                     Toast.makeText(this@RegistrationPage, "Registration Successful!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@RegistrationPage, "Could not register. Please Try Again.", Toast.LENGTH_LONG).show()
@@ -77,5 +81,10 @@ class RegistrationPage : AppCompatActivity(), View.OnClickListener {
 
         buttonLogin!!.setOnClickListener(this)
 
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 }

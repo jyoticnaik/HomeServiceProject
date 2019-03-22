@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
-              android:background="@drawable/bckcolor"
+              android:background="@drawable/custombck2"
               android:layout_gravity="center"
               tools:ignore="contentDescription">
 
@@ -97,6 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/signup"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF"
+            android:transitionName="signupTrans"/>
 
 </LinearLayout>

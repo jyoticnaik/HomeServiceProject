@@ -5,6 +5,9 @@
     <color name="colorAccent">#D81B60</color>
 
     <!--Custom colors for app-->
+    <color name="endcolor">#00695C</color>
+    <color name="accentcolor">#272541</color>
+    <color name="midaccentcolor">#0B2C2C</color>
     <color name="actionBarBackground">#2D3142</color><!--GunMetal-->
     <color name="shadeMatching1">#E4263536</color><!--GunMetal-->
     <color name="shadeMatching2">#5D5D5D</color><!--Ebony-->
