@@ -1,17 +1,58 @@
 package com.example.homeservice
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 
 class UserdetailActivity : AppCompatActivity(), View.OnClickListener {
+
+    private var customerref: FirebaseFirestore?= null
+    private var current_user: FirebaseUser?= null
+    private lateinit var current_user_email: String
+    private var progressDialog: ProgressDialog? = null
+
+
+
     override fun onClick(v: View?) {
         if (v === submit_btn) {
-            //TODO:ADD INFORMATION TO DATABASE
+            progressDialog!!.setMessage("Registring User")
+            progressDialog!!.show()
+            customerref = FirebaseFirestore.getInstance()
+            current_user = FirebaseAuth.getInstance().currentUser
+            current_user_email = current_user!!.email.toString()
+            //var custid = customerref!!.collection("Customers").id
+
+            val user = HashMap<String, Any>()
+            user["FirstName"] = firstname?.text.toString()
+            user["LastName"] = lastname?.text.toString()
+            user["MobileNo"] = mobileno?.text.toString()
+            user["Address"] = address?.text.toString()
+            user["NoOfRooms"] = noofrooms?.text.toString()
+
+            try {
+                customerref!!.collection("Customers").document(current_user_email).set(user)
+                    .addOnSuccessListener {
+                        progressDialog!!.dismiss()
+                        Toast.makeText(this@UserdetailActivity, "UserDetails Added Successfully!", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener{
+                        Toast.makeText(this@UserdetailActivity, "Could not add data. Please Try Again.", Toast.LENGTH_LONG).show()
+                        Log.w("UserdetailActivity", "Error getting documents: ")
+                    }
+            }catch (e: Exception){
+                Log.w("UserdetailActivity", "Error getting documents: ",e)
+            }
+
             startActivity(Intent(this, MainPage::class.java))
         }
     }
@@ -31,6 +72,8 @@ class UserdetailActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_userdetail)
+
+        progressDialog = ProgressDialog(this)
 
         firstname = findViewById(R.id.fnameet)
         lastname = findViewById(R.id.lnameet)

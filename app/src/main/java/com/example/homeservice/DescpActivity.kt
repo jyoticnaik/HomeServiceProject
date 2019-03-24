@@ -5,18 +5,27 @@ import android.icu.text.LocaleDisplayNames
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.homeservice.R
 import org.w3c.dom.Text
 
-class DescpActivity : AppCompatActivity() {
+class DescpActivity : AppCompatActivity(), View.OnClickListener {
+    override fun onClick(v: View?) {
+        //TODO:ADD FUNCTIONS
+    }
+
+    private var proceed_btn: Button?=null
 
     @SuppressLint("LongLogTag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_descp)
 
+        proceed_btn = findViewById(R.id.submit_btn)
+        proceed_btn!!.setOnClickListener(this)
         Log.d(TAG, "onCreate strated")
 
         getIncomingIntent()

@@ -9,10 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RegistrationPage : AppCompatActivity(), View.OnClickListener {
 
-
+    private var customerref: FirebaseFirestore ?= null
 
     override fun onClick(v: View?) {
         if (v === buttonLogin) {
@@ -48,6 +49,7 @@ class RegistrationPage : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful) {
                     //User successfully Registered
                     progressDialog!!.dismiss()
+                    customerref!!.collection("Customers").document(email)
                     Toast.makeText(this@RegistrationPage, "Registration Successful!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@RegistrationPage, "Could not register. Please Try Again.", Toast.LENGTH_LONG).show()
@@ -72,12 +74,14 @@ class RegistrationPage : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_registration_page)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        customerref = FirebaseFirestore.getInstance()
 
         progressDialog = ProgressDialog(this)
         buttonLogin = findViewById(R.id.registrationBtn)
         editTextemail = findViewById(R.id.regEmailTxt)
         editTextpass = findViewById(R.id.regpasswordtxt)
         editTextcnfrmpass = findViewById(R.id.confirmpasswordtxt)
+
 
         buttonLogin!!.setOnClickListener(this)
 
