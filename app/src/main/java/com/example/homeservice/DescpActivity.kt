@@ -1,6 +1,7 @@
 package com.example.homeservice
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.icu.text.LocaleDisplayNames
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -12,19 +13,19 @@ import com.bumptech.glide.Glide
 import com.example.homeservice.R
 import org.w3c.dom.Text
 
-class DescpActivity : AppCompatActivity(), View.OnClickListener {
-    override fun onClick(v: View?) {
-        //TODO:ADD FUNCTIONS
-    }
+abstract class DescpActivity : AppCompatActivity(), View.OnClickListener {
 
     private var proceed_btn: Button?=null
+    private lateinit var head: String
+    private lateinit var  desc: String
+    private lateinit var  price: String
 
     @SuppressLint("LongLogTag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_descp)
 
-        proceed_btn = findViewById(R.id.submit_btn)
+        proceed_btn = this.findViewById(R.id.submit_btn)
         proceed_btn!!.setOnClickListener(this)
         Log.d(TAG, "onCreate strated")
 
@@ -37,7 +38,7 @@ class DescpActivity : AppCompatActivity(), View.OnClickListener {
         if (intent.hasExtra("desc_head")) {
             Log.d(TAG, "getIncomingIntent: found intent extras")
 
-            val head = intent.getStringExtra("desc_head")
+            head = intent.getStringExtra("desc_head")
 
             setHead(head)
         }
@@ -46,7 +47,7 @@ class DescpActivity : AppCompatActivity(), View.OnClickListener {
         if(intent.hasExtra("desc")){
             Log.d(TAG,"getIncomingIntent: found intent extras description")
 
-            val desc=intent.getStringExtra("desc")
+            desc=intent.getStringExtra("desc")
 
             setDesc(desc)
         }
@@ -54,7 +55,7 @@ class DescpActivity : AppCompatActivity(), View.OnClickListener {
         if(intent.hasExtra("price")){
             Log.d(TAG,"getIncomingIntent: found intent extras price")
 
-            val price=intent.getStringExtra("price")
+            price=intent.getStringExtra("price")
 
             setPrice(price)
         }
@@ -80,6 +81,13 @@ class DescpActivity : AppCompatActivity(), View.OnClickListener {
         Log.d(TAG, "setting head")
         val page_head = findViewById<TextView>(R.id.desc_name)
         page_head.text = deschead
+    }
+
+    override fun onClick(v: View?) {
+        //TODO:ADD FUNCTIONS
+        val intent = Intent(this, PopupActivity::class.java)
+        intent.putExtra("service_name", head)
+        startActivity(intent)
     }
 
     companion object {

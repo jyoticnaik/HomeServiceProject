@@ -6,6 +6,8 @@
 
     <!--Custom colors for app-->
     <color name="endcolor">#00695C</color>
+    <color name="endcolor_light">#CC14A06E</color>
+    <color name="light">#CC9695B1</color>
     <color name="accentcolor">#272541</color>
     <color name="midaccentcolor">#0B2C2C</color>
     <color name="actionBarBackground">#2D3142</color><!--GunMetal-->
