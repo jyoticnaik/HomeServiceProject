@@ -3,6 +3,8 @@
     <string name="HS">HS</string>
     <string name="HomeService">HomeService</string>
     <string name="actionbar_loginmenu">Login</string>
+    <string name="actionbar_logoutmenu">Log Out</string>
+
     <string name="actionbar_addtocart">Add To Cart</string>
     <string name="password">Password</string>
     <string name="forgetpass">Forgot Password?</string>

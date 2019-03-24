@@ -10,5 +10,4 @@
       android:background="?android:attr/selectableItemBackground"
       android:icon="@drawable/cartsym"
       app:showAsAction="ifRoom"/>
-
 </menu>

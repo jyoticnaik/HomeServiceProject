@@ -13,6 +13,7 @@ import android.widget.Toast
 import android.support.v7.widget.Toolbar
 import android.widget.ViewFlipper
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainPage : AppCompatActivity(), View.OnClickListener {
 
@@ -23,6 +24,7 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
     private var skincv: CardView? = null
     private var haircv: CardView? = null
     private var makeupcv: CardView? = null
+    private var customerref: FirebaseFirestore?= null
 
     private var firebaseAuth: FirebaseAuth? = null
 
@@ -32,8 +34,6 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
 
         val toolbar = findViewById<Toolbar>(R.id.app_bar)
         setSupportActionBar(toolbar)
-
-        //TODO: Adding changes in actionbar if user already logged in.
 
         val images = intArrayOf(
             R.drawable.painting,
@@ -82,8 +82,20 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
 
     //Adds menu to the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
         val inflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
+
+        firebaseAuth = FirebaseAuth.getInstance()
+        customerref = FirebaseFirestore.getInstance()
+
+        if (firebaseAuth?.getCurrentUser() == null) {
+            inflater.inflate(R.menu.menu_after, menu)
+            Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            inflater.inflate(R.menu.menu, menu)
+        }
+        
         return super.onCreateOptionsMenu(menu)
     }
 
