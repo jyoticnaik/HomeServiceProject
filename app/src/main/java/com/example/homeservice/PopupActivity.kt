@@ -8,18 +8,20 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class PopupActivity : Activity() {
+class PopupActivity : Activity(), View.OnClickListener {
 
-    private var customerref: FirebaseFirestore? = null
-    private lateinit var current_user_email: String
+    private var customerref: FirebaseFirestore? = FirebaseFirestore.getInstance()
+    private var current_user_email = FirebaseAuth.getInstance().currentUser!!.email.toString()
     private var room_count: Int = 0
     private var price = 1250
+
     private var cust_name: TextView? = null
     private var cust_mobno: TextView? = null
     private var cust_addr: TextView? = null
@@ -27,6 +29,15 @@ class PopupActivity : Activity() {
     private var sel_service: TextView? = null
     private var service_price: TextView? = null
     private var total: TextView? = null
+
+    private var scust_name: String? = null
+    private var scust_mobno: String? = null
+    private var scust_addr: String? = null
+    private var sroomcount: String? = null
+    private var ssel_service: String? = null
+    private var sservice_price: String? = null
+    private var stotal: String? = null
+
     private var addtocart: Button? = null
 
     private var progressDialog: ProgressDialog? = null
@@ -60,17 +71,20 @@ class PopupActivity : Activity() {
         total = findViewById(R.id.service_total)
         addtocart = findViewById(R.id.addtocart_btn)
 
-        progressDialog!!.setMessage("Registring User")
+        progressDialog!!.setMessage("Loading")
         progressDialog!!.show()
-        current_user_email = FirebaseAuth.getInstance().currentUser!!.email.toString()
+
         customerref!!.collection("Customers").document(current_user_email).get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot != null) {
                     progressDialog!!.dismiss()
                     room_count = Integer.parseInt(documentSnapshot.get("NoOfRooms").toString())
-                    cust_mobno?.text = documentSnapshot.get("FirstName").toString() + " " + documentSnapshot.get("LastName")
-                    cust_addr?.text = documentSnapshot.get("Address").toString()
-                    roomcount?.text = room_count.toString()
+
+                    sroomcount = room_count.toString()
+                    scust_name = documentSnapshot.get("FirstName").toString() + " " + documentSnapshot.get("LastName")
+                    scust_addr = documentSnapshot.get("Address").toString()
+                    scust_mobno = documentSnapshot.get("MobileNo").toString()
+
                 } else {
                     Toast.makeText(this, "Error loading room count", Toast.LENGTH_SHORT).show()
                 }
@@ -78,7 +92,10 @@ class PopupActivity : Activity() {
 
         getIncomingIntent()
         total_Calculate()
+        fillData()
+        addtocart?.setOnClickListener(this)
     }
+
 
     private fun total_Calculate() {
         for (i in 1..100) {
@@ -86,18 +103,50 @@ class PopupActivity : Activity() {
                 price = price * i
             }
         }
-        service_price?.text = "1250"
-        total?.text = price.toString()
+
+        sservice_price = "1250"
+        stotal = price.toString()
+        return
     }
 
     private fun getIncomingIntent() {
         if (intent.hasExtra("service_name")) {
             val snm = intent.getStringExtra("service_name").toString()
-            sel_service?.text = snm
+            ssel_service = snm
             return
         }
     }
 
+
+    private fun fillData() {
+        cust_name?.text = scust_name
+        cust_addr?.text = scust_addr
+        cust_mobno?.text = scust_mobno
+        roomcount?.text = sroomcount
+        sel_service?.text = ssel_service
+        service_price?.text = sservice_price
+        total?.text = stotal
+    }
+
+    override fun onClick(v: View?) {
+        progressDialog!!.setMessage("Loading")
+        progressDialog!!.show()
+        val cart = HashMap<String, String?>()
+        cart["SelectedService"] = ssel_service
+        cart["ServicePrice"] = sservice_price
+        cart["SubTotal"] = stotal
+        customerref?.collection("Customers")?.document(current_user_email)?.collection("CartDetails")?.add(cart)
+            ?.addOnSuccessListener {
+                progressDialog!!.dismiss()
+                Toast.makeText(this,"Added to cart successfully",Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            ?.addOnFailureListener{
+                progressDialog!!.dismiss()
+                Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show()
+                Log.w(TAG,"Exception :")
+            }
+    }
 
     companion object {
 

@@ -25,7 +25,7 @@ class UserdetailActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v === submit_btn) {
-            progressDialog!!.setMessage("Registring User")
+            progressDialog!!.setMessage("Adding UserDetails")
             progressDialog!!.show()
             customerref = FirebaseFirestore.getInstance()
             current_user = FirebaseAuth.getInstance().currentUser
