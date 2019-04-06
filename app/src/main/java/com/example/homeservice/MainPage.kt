@@ -95,7 +95,7 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
         else {
             inflater.inflate(R.menu.menu, menu)
         }
-        
+
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -109,7 +109,8 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
                 true
             }
             R.id.action_cart->{
-                Toast.makeText(this,"Cart Page Not created yet.",Toast.LENGTH_LONG).show()
+                //TODO:ADD FUNCTIONS ON CLICK OF ADD TO CART
+                Toast.makeText(this,"com.example.homeservice.Cart Page Not created yet.",Toast.LENGTH_LONG).show()
                 true
             }
             else->super.onOptionsItemSelected(item)

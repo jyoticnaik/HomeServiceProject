@@ -3,6 +3,7 @@ package com.example.homeservice
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -20,7 +21,8 @@ class PopupActivity : Activity(), View.OnClickListener {
     private var customerref: FirebaseFirestore? = FirebaseFirestore.getInstance()
     private var current_user_email = FirebaseAuth.getInstance().currentUser!!.email.toString()
     private var room_count: Int = 0
-    private var price = 1250
+    private var price_services = 1250
+    private var price_beauty = 500
 
     private var cust_name: TextView? = null
     private var cust_mobno: TextView? = null
@@ -91,30 +93,50 @@ class PopupActivity : Activity(), View.OnClickListener {
             }
 
         getIncomingIntent()
-        total_Calculate()
+
         fillData()
         addtocart?.setOnClickListener(this)
     }
 
+    private fun getIncomingIntent() {
+        if (intent.hasExtra("service_name")) {
+            val snm = intent.getStringExtra("service_name").toString().trim()
+            ssel_service = snm
+            //TODO: to make some changes for different services
+            if (snm.equals("Deep Home Cleaning") || snm.equals("Furniture Polishing & Cleaning") || snm.equals("Manual Cleaning")
+                || snm.equals("Floor Scrubbing") || snm.equals("Chemical Pest Control") || snm.equals("Biological Pest Control")
+                || snm.equals("Herbal Pest Control") || snm.equals("Matte Paint") || snm.equals("") || snm.equals("") || snm.equals(
+                    ""
+                )
+                || snm.equals("Matte Enamel") || snm.equals("Satin Finish") || snm.equals("Semi-gloss Finish") || snm.equals(
+                    "Gloss_paint Paint"
+                )
+            ) {
+                total_Calculate_Services()
+            } else if (snm.equals("Dry Skin") || snm.equals("Sensitive Skin") || snm.equals("Oil Skin") || snm.equals("Customized Cut")
+                || snm.equals("Shampoo & Blow Dry") || snm.equals("Personalized Color & Highlights") || snm.equals("Formal Styling")
+                || snm.equals("Bridal & Wedding Hairstyles") || snm.equals("Extensions") || snm.equals("Hair Smoothing System")
+            ) {
+                total_Calculate_Beauty()
+            }
+        }
+    }
 
-    private fun total_Calculate() {
+
+    private fun total_Calculate_Services() {
         for (i in 1..100) {
             if (room_count == i) {
-                price = price * i
+                price_services = price_services * i
             }
         }
 
         sservice_price = "1250"
-        stotal = price.toString()
-        return
+        stotal = price_services.toString()
     }
 
-    private fun getIncomingIntent() {
-        if (intent.hasExtra("service_name")) {
-            val snm = intent.getStringExtra("service_name").toString()
-            ssel_service = snm
-            return
-        }
+    private fun total_Calculate_Beauty() {
+        sservice_price = "500"
+        stotal = price_services.toString()
     }
 
 
@@ -129,23 +151,52 @@ class PopupActivity : Activity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        progressDialog!!.setMessage("Loading")
-        progressDialog!!.show()
-        val cart = HashMap<String, String?>()
-        cart["SelectedService"] = ssel_service
-        cart["ServicePrice"] = sservice_price
-        cart["SubTotal"] = stotal
-        customerref?.collection("Customers")?.document(current_user_email)?.collection("CartDetails")?.add(cart)
-            ?.addOnSuccessListener {
-                progressDialog!!.dismiss()
-                Toast.makeText(this,"Added to cart successfully",Toast.LENGTH_SHORT).show()
-                finish()
-            }
-            ?.addOnFailureListener{
-                progressDialog!!.dismiss()
-                Toast.makeText(this,"Error",Toast.LENGTH_SHORT).show()
-                Log.w(TAG,"Exception :")
-            }
+
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            progressDialog!!.setMessage("Loading")
+            progressDialog!!.show()
+            val cart = HashMap<String, String?>()
+            cart["SelectedService"] = ssel_service
+            cart["ServicePrice"] = sservice_price
+            cart["SubTotal"] = stotal
+            customerref?.collection("Customers")?.document(current_user_email)?.collection("CartDetails")?.add(cart)
+                ?.addOnSuccessListener {
+                    progressDialog!!.dismiss()
+                    Toast.makeText(this, "Added to cart successfully", Toast.LENGTH_SHORT).show()
+
+                    /*
+                    ADD TO CART PE KYA HONA CHIYE KA CODE
+
+                    WE ARE NOT USING BELOW CODE BECAUSE WE DON'T WANT TO OPEN ADDTOCARTACTIVTY ON CLICK
+                    THIS IS TO BE DONE ON CART PAGE SELECTION ON ACTION BAR ON MAINPAGE ACTITVITY
+                    TODO:READ ABOVE!
+
+                    val intent = Intent(this, AddToCartActivity::class.java)
+                    intent.putExtra("SelectedService", ssel_service)
+                    intent.putExtra("ServicePrice",sservice_price)
+                    intent.putExtra("SubTotal",stotal)
+                    this.startActivity(intent)
+                    */
+                    Database(getBaseContext()).addToCart(
+                        Service(
+                            ssel_service,
+                            sservice_price,
+                            stotal
+                        )
+                    )
+                    finish()
+                }
+                ?.addOnFailureListener {
+                    progressDialog!!.dismiss()
+                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                    Log.w(TAG, "Exception :")
+                }
+
+            //TODO:Create an add to cart page and display the items in the cart.
+
+        } else {
+            Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {

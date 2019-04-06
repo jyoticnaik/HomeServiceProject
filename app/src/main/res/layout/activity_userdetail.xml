@@ -6,7 +6,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".UserdetailActivity"
-        android:background="#1A272541">
+        android:background="#1A272541"
+        android:id="@+id/userdetial_layout"
+        android:transitionName="signupTrans">
 
     <ScrollView android:layout_width="match_parent" android:layout_height="566dp">
 

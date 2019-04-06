@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:padding="16dp"
+        tools:context=".AddToCartActivity">
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/listCart"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <android.support.v7.widget.CardView
+            android:layout_alignParentBottom="true"
+            app:cardBackgroundColor="#272541"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL:"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp"/>
+
+                <TextView
+                        android:layout_marginStart="8dp"
+                        android:id="@+id/grand_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹0.00"
+                        android:textColor="@android:color/white"
+                        android:textSize="24sp"/>
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/confirmation_btn"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#272541"
+                    android:textSize="14sp"
+                    android:elevation="6dp"
+                    android:text="BOOK NOW"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="8dp"
+                    android:shadowColor="@android:color/white"
+                    android:shadowEnabled="true"
+                    android:shadowDx="5dp"
+                    android:shadowDy="4dp"
+            />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

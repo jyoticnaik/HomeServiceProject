@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.homeservice.R
 import org.w3c.dom.Text
 
-abstract class DescpActivity : AppCompatActivity(), View.OnClickListener {
+class DescpActivity : AppCompatActivity(), View.OnClickListener {
 
     private var proceed_btn: Button?=null
     private lateinit var head: String
@@ -25,11 +25,17 @@ abstract class DescpActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_descp)
 
-        proceed_btn = this.findViewById(R.id.submit_btn)
-        proceed_btn!!.setOnClickListener(this)
-        Log.d(TAG, "onCreate strated")
+        try {
+           proceed_btn = findViewById(R.id.submit_btn)
+            proceed_btn!!.setOnClickListener(this)
+           Log.d(TAG, "onCreate strated")
 
-        getIncomingIntent()
+            getIncomingIntent()
+        }
+        catch (e: Exception)
+        {
+            Log.d(TAG,"Exception: "+e)
+        }
     }
 
     @SuppressLint("LongLogTag")
@@ -87,7 +93,7 @@ abstract class DescpActivity : AppCompatActivity(), View.OnClickListener {
         //TODO:ADD FUNCTIONS
         val intent = Intent(this, PopupActivity::class.java)
         intent.putExtra("service_name", head)
-        startActivity(intent)
+        this.startActivity(intent)
     }
 
     companion object {

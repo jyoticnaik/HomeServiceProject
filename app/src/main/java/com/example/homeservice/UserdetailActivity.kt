@@ -1,15 +1,16 @@
 package com.example.homeservice
 
+import android.annotation.TargetApi
+import android.app.ActivityOptions
 import android.app.ProgressDialog
 import android.content.Intent
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Pair
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,8 +22,7 @@ class UserdetailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var current_user_email: String
     private var progressDialog: ProgressDialog? = null
 
-
-
+    @TargetApi(Build.VERSION_CODES.ECLAIR)
     override fun onClick(v: View?) {
         if (v === submit_btn) {
             progressDialog!!.setMessage("Adding UserDetails")
@@ -44,6 +44,17 @@ class UserdetailActivity : AppCompatActivity(), View.OnClickListener {
                     .addOnSuccessListener {
                         progressDialog!!.dismiss()
                         Toast.makeText(this@UserdetailActivity, "UserDetails Added Successfully!", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this,LoginActivity::class.java))
+                        val i = Intent(this, RegistrationPage::class.java)
+                        val pair = Pair.create<View,String>(submit_btn, "signupTrans")
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                            val options = ActivityOptions.makeSceneTransitionAnimation(this, pair)
+                            startActivity(i, options.toBundle())
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                        } else {
+                            startActivity(i)
+                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                        }
                     }
                     .addOnFailureListener{
                         Toast.makeText(this@UserdetailActivity, "Could not add data. Please Try Again.", Toast.LENGTH_LONG).show()

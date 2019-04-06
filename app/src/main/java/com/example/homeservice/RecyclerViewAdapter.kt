@@ -28,11 +28,12 @@ class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>,
     private val TAG="RecyclerViewAdapter"
 
     init {
-        Log.d(TAG,"Entered RecyclerViewAapter")
-        this.mImageName = mImageName
-        this.mImage = mImage
-        this.mDesc = mDesc
-        this.mPrice = mPrice
+
+            Log.d(TAG,"Entered RecyclerViewAapter")
+            this.mImageName = mImageName
+            this.mImage = mImage
+            this.mDesc = mDesc
+            this.mPrice = mPrice
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -56,11 +57,11 @@ class RecyclerViewAdapter(mImageName: ArrayList<String>, mImage: ArrayList<Int>,
             Log.d(TAG, "onClick: clickedon: " + mImageName[position])
             Toast.makeText(mContext, mImageName[position], Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(mContext, DescpActivity::class.java)
-            intent.putExtra("desc_head", mImageName.get(position))
-            intent.putExtra("desc",mDesc.get(position))
-            intent.putExtra("price",mPrice.get(position))
-            mContext.startActivity(intent)
+                val intent = Intent(mContext, DescpActivity::class.java)
+                intent.putExtra("desc_head", mImageName.get(position))
+                intent.putExtra("desc",mDesc.get(position))
+                intent.putExtra("price",mPrice.get(position))
+                mContext.startActivity(intent)
 
         }
 

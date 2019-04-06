@@ -1,9 +1,12 @@
 package com.example.homeservice
 
+import android.app.ActivityOptions
 import android.app.ProgressDialog
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Pair
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -51,6 +54,18 @@ class RegistrationPage : AppCompatActivity(), View.OnClickListener {
                     progressDialog!!.dismiss()
                     customerref!!.collection("Customers").document(email)
                     Toast.makeText(this@RegistrationPage, "Registration Successful!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Please fill some details.",Toast.LENGTH_SHORT).show()
+                    //startActivity(Intent(this,UserdetailActivity::class.java))
+                    val i = Intent(this, UserdetailActivity::class.java)
+                    val pair = Pair.create<View,String>(buttonLogin, "signupTrans")
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        val options = ActivityOptions.makeSceneTransitionAnimation(this, pair)
+                        startActivity(i, options.toBundle())
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    } else {
+                        startActivity(i)
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
                 } else {
                     Toast.makeText(this@RegistrationPage, "Could not register. Please Try Again.", Toast.LENGTH_LONG).show()
                 }
