@@ -18,8 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class PopupActivity : Activity(), View.OnClickListener {
 
-  //  private val myDB = Database(this@PopupActivity)
+    //  private val myDB = Database(this@PopupActivity)
 
+    private lateinit var firebaseAuth: FirebaseAuth
 
     private var customerref: FirebaseFirestore? = FirebaseFirestore.getInstance()
     private var current_user_email = FirebaseAuth.getInstance().currentUser!!.email.toString()
@@ -139,11 +140,11 @@ class PopupActivity : Activity(), View.OnClickListener {
                 )
                 || snm.equals("Bridal & Wedding Hairstyles") || snm.equals("Extensions") || snm.equals("Hair Smoothing System")
             ) {
-               total_Calculate_Beauty()
+                total_Calculate_Beauty()
             }
         }
 
-        Toast.makeText(this,"Selected Service: "+ssel_service,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Selected Service: " + ssel_service, Toast.LENGTH_SHORT).show()
     }
 
 
@@ -168,10 +169,10 @@ class PopupActivity : Activity(), View.OnClickListener {
 
         cust_name?.text = scust_name
         cust_addr?.text = "Address: " + scust_addr
-        cust_mobno?.text = "Mobile No.: "+ scust_mobno
+        cust_mobno?.text = "Mobile No.: " + scust_mobno
         roomcount?.text = "Room Count: " + sroomcount
         sel_service?.text = "Selected Service: " + ssel_service
-        service_price?.text = "Service Price: "+ sservice_price
+        service_price?.text = "Service Price: " + sservice_price
         total?.text = "Total: " + stotal
 
         Log.d("FillData()", " " + scust_name + " " + scust_addr + " " + scust_mobno + " " + sroomcount)
@@ -179,63 +180,54 @@ class PopupActivity : Activity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
+        firebaseAuth = FirebaseAuth.getInstance()
         val progress = ProgressDialog(this)
         progress.setTitle("Loading")
         progress.setMessage("Wait while loading...")
         progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
         progress.show()
 
-
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            val cart = HashMap<String, String?>()
-            cart["SelectedService"] = ssel_service
-            cart["ServicePrice"] = sservice_price
-            cart["SubTotal"] = stotal
-            customerref?.collection("Customers")?.document(current_user_email)?.collection("CartDetails")?.add(cart)
-                ?.addOnSuccessListener {
-
-                    // To dismiss the dialog
-                    progress.dismiss()
-                    Toast.makeText(this, "Added to cart successfully", Toast.LENGTH_SHORT).show()
-
-                    /*
-                    ADD TO CART PE KYA HONA CHIYE KA CODE
-
-                    WE ARE NOT USING BELOW CODE BECAUSE WE DON'T WANT TO OPEN ADDTOCARTACTIVTY ON CLICK
-                    THIS IS TO BE DONE ON CART PAGE SELECTION ON ACTION BAR ON MAINPAGE ACTITVITY
-                    TODO:READ ABOVE!
-
-                    val intent = Intent(this, AddToCartActivity::class.java)
-                    intent.putExtra("SelectedService", ssel_service)
-                    intent.putExtra("ServicePrice",sservice_price)
-                    intent.putExtra("SubTotal",stotal)
-                    this.startActivity(intent)
-                    */
-
-                    Database(getBaseContext()).addToCart(
-                        Service(
-                            ssel_service,
-                            sservice_price,
-                            stotal
-                        )
-                    )
-                    //autoFillEditText()
-                    finish()
-                }
-                ?.addOnFailureListener {
-                    progress.dismiss()
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
-                    Log.w(TAG, "Exception :")
-                }
-
-            //TODO:Create an add to cart page and display the items in the cart.
-
-        } else {
+        if (firebaseAuth?.getCurrentUser() == null) {
             Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show()
+            progress.dismiss()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        } else {
+            if (FirebaseAuth.getInstance().currentUser != null) {
+                val cart = HashMap<String, String?>()
+                cart["SelectedService"] = ssel_service
+                cart["ServicePrice"] = sservice_price
+                cart["SubTotal"] = stotal
+                customerref?.collection("Customers")?.document(current_user_email)?.collection("CartDetails")?.add(cart)
+                    ?.addOnSuccessListener {
+
+                        // To dismiss the dialog
+                        progress.dismiss()
+                        Toast.makeText(this, "Added to cart successfully", Toast.LENGTH_SHORT).show()
+
+                        Database(getBaseContext()).addToCart(
+                            Service(
+                                ssel_service,
+                                sservice_price,
+                                stotal
+                            )
+                        )
+                        //autoFillEditText()
+                        finish()
+                    }
+                    ?.addOnFailureListener {
+                        progress.dismiss()
+                        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                        Log.w(TAG, "Exception :")
+                    }
+
+            } else {
+                Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-//    fun autoFillEditText() {
+    //    fun autoFillEditText() {
 //        val res = myDB.getAllData()
 //        if (res.getCount() == 0) {
 //            Toast.makeText(this, "NO DATA", Toast.LENGTH_SHORT).show()

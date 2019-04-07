@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainPage"
-        tools:ignore="contentDescription">
+        tools:ignore="contentDescription"
+        android:transitionName="signupTrans">
 
     <include
             layout="@layout/app_bar"

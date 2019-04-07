@@ -93,7 +93,6 @@ class DescpActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        //TODO:ADD FUNCTIONS
         val intent = Intent(this, PopupActivity::class.java)
         intent.putExtra("service_name", head)
         this.startActivity(intent)

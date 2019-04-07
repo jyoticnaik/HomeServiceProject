@@ -109,17 +109,19 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this,"Logout Successfull!",Toast.LENGTH_SHORT).show()
                 i = Intent(this,LoginActivity::class.java)
                 startActivity(i)
+                finish()
                 true
             }
             R.id.action_login ->{
                 i= Intent(this,LoginActivity::class.java)
                 startActivity(i)
+                finish()
                 true
             }
             R.id.action_cart->{
-                //TODO:ADD FUNCTIONS ON CLICK OF ADD TO CART
                 i = Intent(this,Cart::class.java)
                 startActivity(i)
+                finish()
                 //Toast.makeText(this,"com.example.homeservice.Cart Page Not created yet.",Toast.LENGTH_LONG).show()
                 true
             }

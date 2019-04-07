@@ -44,8 +44,7 @@ class UserdetailActivity : AppCompatActivity(), View.OnClickListener {
                     .addOnSuccessListener {
                         progressDialog!!.dismiss()
                         Toast.makeText(this@UserdetailActivity, "UserDetails Added Successfully!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this,LoginActivity::class.java))
-                        val i = Intent(this, RegistrationPage::class.java)
+                        val i = Intent(this, MainPage::class.java)
                         val pair = Pair.create<View,String>(submit_btn, "signupTrans")
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                             val options = ActivityOptions.makeSceneTransitionAnimation(this, pair)
@@ -65,8 +64,6 @@ class UserdetailActivity : AppCompatActivity(), View.OnClickListener {
             }catch (e: Exception){
                 Log.w("UserdetailActivity", "Error getting documents: ",e)
             }
-
-            startActivity(Intent(this, MainPage::class.java))
         }
     }
 
