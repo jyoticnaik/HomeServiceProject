@@ -3,6 +3,7 @@ package com.example.homeservice
 import android.app.ActivityOptions
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -83,6 +84,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 } else {
                     Toast.makeText(this@LoginActivity, "OOPS! Sigin Unsuccessful.", Toast.LENGTH_SHORT).show()
                 }
+            }
+            .addOnFailureListener { task ->
+                Toast.makeText(this@LoginActivity,"ERROR: "+task.localizedMessage,Toast.LENGTH_SHORT).show()
+                Log.d("LOGINACTIVITY","ERROR: "+task.localizedMessage)
             }
     }
 

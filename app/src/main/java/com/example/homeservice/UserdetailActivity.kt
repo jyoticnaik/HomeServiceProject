@@ -51,9 +51,11 @@ class UserdetailActivity : AppCompatActivity(), View.OnClickListener {
                             val options = ActivityOptions.makeSceneTransitionAnimation(this, pair)
                             startActivity(i, options.toBundle())
                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                            finish()
                         } else {
                             startActivity(i)
                             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                            finish()
                         }
                     }
                     .addOnFailureListener{

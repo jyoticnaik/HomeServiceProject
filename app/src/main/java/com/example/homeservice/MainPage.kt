@@ -89,11 +89,12 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
         customerref = FirebaseFirestore.getInstance()
 
         if (firebaseAuth?.getCurrentUser() == null) {
-            inflater.inflate(R.menu.menu_after, menu)
+            //Toast.makeText(this,"CurrentUser: "+firebaseAuth!!.currentUser.toString(),Toast.LENGTH_SHORT).show()
+            inflater.inflate(R.menu.menu, menu)
             Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show()
         }
         else {
-            inflater.inflate(R.menu.menu, menu)
+            inflater.inflate(R.menu.menu_after, menu)
         }
 
         return super.onCreateOptionsMenu(menu)
@@ -103,6 +104,13 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val i:Intent
         return when(item.itemId){
+            R.id.action_logout -> {
+                FirebaseAuth.getInstance().signOut()
+                Toast.makeText(this,"Logout Successfull!",Toast.LENGTH_SHORT).show()
+                i = Intent(this,LoginActivity::class.java)
+                startActivity(i)
+                true
+            }
             R.id.action_login ->{
                 i= Intent(this,LoginActivity::class.java)
                 startActivity(i)
@@ -110,7 +118,9 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
             }
             R.id.action_cart->{
                 //TODO:ADD FUNCTIONS ON CLICK OF ADD TO CART
-                Toast.makeText(this,"com.example.homeservice.Cart Page Not created yet.",Toast.LENGTH_LONG).show()
+                i = Intent(this,Cart::class.java)
+                startActivity(i)
+                //Toast.makeText(this,"com.example.homeservice.Cart Page Not created yet.",Toast.LENGTH_LONG).show()
                 true
             }
             else->super.onOptionsItemSelected(item)

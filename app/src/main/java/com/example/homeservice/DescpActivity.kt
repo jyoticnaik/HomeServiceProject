@@ -5,6 +5,7 @@ import android.content.Intent
 import android.icu.text.LocaleDisplayNames
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -26,7 +27,7 @@ class DescpActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_descp)
 
         try {
-           proceed_btn = findViewById(R.id.submit_btn)
+           proceed_btn = this.findViewById(R.id.submit_btn)
             proceed_btn!!.setOnClickListener(this)
            Log.d(TAG, "onCreate strated")
 
@@ -73,6 +74,7 @@ class DescpActivity : AppCompatActivity(), View.OnClickListener {
         Log.d(TAG, "setting price")
         val page_price = findViewById<TextView>(R.id.serv_price)
         page_price.text = price
+        page_price.movementMethod = ScrollingMovementMethod()
     }
 
     @SuppressLint("LongLogTag")
@@ -80,6 +82,7 @@ class DescpActivity : AppCompatActivity(), View.OnClickListener {
         Log.d(TAG, "setting description")
         val page_desc = findViewById<TextView>(R.id.Description)
         page_desc.text = desc
+        page_desc.movementMethod = ScrollingMovementMethod()
     }
 
     @SuppressLint("LongLogTag")

@@ -18,6 +18,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class PopupActivity : Activity(), View.OnClickListener {
 
+  //  private val myDB = Database(this@PopupActivity)
+
+
     private var customerref: FirebaseFirestore? = FirebaseFirestore.getInstance()
     private var current_user_email = FirebaseAuth.getInstance().currentUser!!.email.toString()
     private var room_count: Int = 0
@@ -32,22 +35,21 @@ class PopupActivity : Activity(), View.OnClickListener {
     private var service_price: TextView? = null
     private var total: TextView? = null
 
-    private var scust_name: String? = null
-    private var scust_mobno: String? = null
-    private var scust_addr: String? = null
-    private var sroomcount: String? = null
-    private var ssel_service: String? = null
-    private var sservice_price: String? = null
-    private var stotal: String? = null
+    private lateinit var scust_name: String
+    private lateinit var scust_mobno: String
+    private lateinit var scust_addr: String
+    private lateinit var sroomcount: String
+    private lateinit var ssel_service: String
+    private lateinit var sservice_price: String
+    private lateinit var stotal: String
 
     private var addtocart: Button? = null
-
-    private var progressDialog: ProgressDialog? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popup)
+
 
         val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
@@ -73,13 +75,15 @@ class PopupActivity : Activity(), View.OnClickListener {
         total = findViewById(R.id.service_total)
         addtocart = findViewById(R.id.addtocart_btn)
 
-        progressDialog!!.setMessage("Loading")
-        progressDialog!!.show()
-
+        val progress = ProgressDialog(this)
+        progress.setTitle("Loading")
+        progress.setMessage("Wait while loading...")
+        progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
+        progress.show()
         customerref!!.collection("Customers").document(current_user_email).get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot != null) {
-                    progressDialog!!.dismiss()
+
                     room_count = Integer.parseInt(documentSnapshot.get("NoOfRooms").toString())
 
                     sroomcount = room_count.toString()
@@ -87,25 +91,39 @@ class PopupActivity : Activity(), View.OnClickListener {
                     scust_addr = documentSnapshot.get("Address").toString()
                     scust_mobno = documentSnapshot.get("MobileNo").toString()
 
+                    Log.d(
+                        "PopUPActivity",
+                        " " + room_count + " " + sroomcount + " " + scust_name + scust_mobno + scust_addr
+                    )
+                    getIncomingIntent()
+
+                    fillData()
+                    progress.dismiss()
                 } else {
+                    progress.dismiss()
                     Toast.makeText(this, "Error loading room count", Toast.LENGTH_SHORT).show()
                 }
             }
 
-        getIncomingIntent()
 
-        fillData()
         addtocart?.setOnClickListener(this)
+
     }
 
     private fun getIncomingIntent() {
         if (intent.hasExtra("service_name")) {
             val snm = intent.getStringExtra("service_name").toString().trim()
+
+            //Log.d("POPACTIVITY", "snm: " + snm + " \n" + "ssel_service: " + ssel_service)
             ssel_service = snm
             //TODO: to make some changes for different services
-            if (snm.equals("Deep Home Cleaning") || snm.equals("Furniture Polishing & Cleaning") || snm.equals("Manual Cleaning")
+            if (snm.equals("Deep Home Cleaning") || snm.equals("Furniture Polishing & Cleaning") || snm.equals(
+                    "Manual Cleaning"
+                )
                 || snm.equals("Floor Scrubbing") || snm.equals("Chemical Pest Control") || snm.equals("Biological Pest Control")
-                || snm.equals("Herbal Pest Control") || snm.equals("Matte Paint") || snm.equals("") || snm.equals("") || snm.equals(
+                || snm.equals("Herbal Pest Control") || snm.equals("Matte Paint") || snm.equals("") || snm.equals(
+                    ""
+                ) || snm.equals(
                     ""
                 )
                 || snm.equals("Matte Enamel") || snm.equals("Satin Finish") || snm.equals("Semi-gloss Finish") || snm.equals(
@@ -113,13 +131,19 @@ class PopupActivity : Activity(), View.OnClickListener {
                 )
             ) {
                 total_Calculate_Services()
-            } else if (snm.equals("Dry Skin") || snm.equals("Sensitive Skin") || snm.equals("Oil Skin") || snm.equals("Customized Cut")
-                || snm.equals("Shampoo & Blow Dry") || snm.equals("Personalized Color & Highlights") || snm.equals("Formal Styling")
+            } else if (snm.equals("Dry Skin") || snm.equals("Sensitive Skin") || snm.equals("Oil Skin") || snm.equals(
+                    "Customized Cut"
+                )
+                || snm.equals("Shampoo & Blow Dry") || snm.equals("Personalized Color & Highlights") || snm.equals(
+                    "Formal Styling"
+                )
                 || snm.equals("Bridal & Wedding Hairstyles") || snm.equals("Extensions") || snm.equals("Hair Smoothing System")
             ) {
-                total_Calculate_Beauty()
+               total_Calculate_Beauty()
             }
         }
+
+        Toast.makeText(this,"Selected Service: "+ssel_service,Toast.LENGTH_SHORT).show()
     }
 
 
@@ -141,27 +165,37 @@ class PopupActivity : Activity(), View.OnClickListener {
 
 
     private fun fillData() {
+
         cust_name?.text = scust_name
-        cust_addr?.text = scust_addr
-        cust_mobno?.text = scust_mobno
-        roomcount?.text = sroomcount
-        sel_service?.text = ssel_service
-        service_price?.text = sservice_price
-        total?.text = stotal
+        cust_addr?.text = "Address: " + scust_addr
+        cust_mobno?.text = "Mobile No.: "+ scust_mobno
+        roomcount?.text = "Room Count: " + sroomcount
+        sel_service?.text = "Selected Service: " + ssel_service
+        service_price?.text = "Service Price: "+ sservice_price
+        total?.text = "Total: " + stotal
+
+        Log.d("FillData()", " " + scust_name + " " + scust_addr + " " + scust_mobno + " " + sroomcount)
     }
 
     override fun onClick(v: View?) {
 
+        val progress = ProgressDialog(this)
+        progress.setTitle("Loading")
+        progress.setMessage("Wait while loading...")
+        progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
+        progress.show()
+
+
         if (FirebaseAuth.getInstance().currentUser != null) {
-            progressDialog!!.setMessage("Loading")
-            progressDialog!!.show()
             val cart = HashMap<String, String?>()
             cart["SelectedService"] = ssel_service
             cart["ServicePrice"] = sservice_price
             cart["SubTotal"] = stotal
             customerref?.collection("Customers")?.document(current_user_email)?.collection("CartDetails")?.add(cart)
                 ?.addOnSuccessListener {
-                    progressDialog!!.dismiss()
+
+                    // To dismiss the dialog
+                    progress.dismiss()
                     Toast.makeText(this, "Added to cart successfully", Toast.LENGTH_SHORT).show()
 
                     /*
@@ -177,6 +211,7 @@ class PopupActivity : Activity(), View.OnClickListener {
                     intent.putExtra("SubTotal",stotal)
                     this.startActivity(intent)
                     */
+
                     Database(getBaseContext()).addToCart(
                         Service(
                             ssel_service,
@@ -184,10 +219,11 @@ class PopupActivity : Activity(), View.OnClickListener {
                             stotal
                         )
                     )
+                    //autoFillEditText()
                     finish()
                 }
                 ?.addOnFailureListener {
-                    progressDialog!!.dismiss()
+                    progress.dismiss()
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                     Log.w(TAG, "Exception :")
                 }
@@ -199,6 +235,20 @@ class PopupActivity : Activity(), View.OnClickListener {
         }
     }
 
+//    fun autoFillEditText() {
+//        val res = myDB.getAllData()
+//        if (res.getCount() == 0) {
+//            Toast.makeText(this, "NO DATA", Toast.LENGTH_SHORT).show()
+//            Log.d("POPUP","NO DATA")
+//        } else {
+//            while (res.moveToNext()) {
+//                Log.d("POPUP", res.getColumnName(0)+" " + res.getString(0)
+//                +"\n" + res.getColumnName(1)+" " +res.getString(1)
+//                +"\n"+ res.getColumnName(2)+" " +res.getString(2)
+//                +"\n"+ res.getColumnName(3)+" " +res.getString(3))
+//            }
+//        }
+//    }
     companion object {
 
         private val TAG = "PopupActivity"

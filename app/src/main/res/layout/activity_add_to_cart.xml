@@ -63,9 +63,6 @@
                     android:layout_alignParentBottom="true"
                     android:layout_margin="8dp"
                     android:shadowColor="@android:color/white"
-                    android:shadowEnabled="true"
-                    android:shadowDx="5dp"
-                    android:shadowDy="4dp"
             />
 
         </RelativeLayout>
