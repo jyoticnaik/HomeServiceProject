@@ -12,6 +12,7 @@ import android.util.Pair
 import android.view.View
 import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
+import java.lang.Exception
 import java.io.IOException
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -23,8 +24,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private var fgtpss:TextView?=null
     //private var img:ImageView? =null
     private var signuphp:TextView?=null
-
-    private var progressDialog: ProgressDialog? = null
 
     private var firebaseAuth: FirebaseAuth? = null
 
@@ -56,6 +55,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun userLogin() {
+        val progress = ProgressDialog(this)
+        progress.setTitle("Loading")
+        progress.setMessage("Wait while loading...")
+        progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
+        progress.show()
+
         val email = username!!.text.toString().trim { it <= ' ' }
         val pass = password!!.text.toString().trim { it <= ' ' }
 
@@ -70,25 +75,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             return
         }
 
-        //progress Dialog bar because the process include internet use which may take time.
-        progressDialog!!.setMessage("Signing In Please Wait...")
-        progressDialog!!.show()
-
-        firebaseAuth!!.signInWithEmailAndPassword(email, pass)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    //start the main activity
-                    progressDialog!!.dismiss()
-                    finish()
-                    startActivity(Intent(this,MainPage::class.java))
-                } else {
-                    Toast.makeText(this@LoginActivity, "OOPS! Sigin Unsuccessful.", Toast.LENGTH_SHORT).show()
+        try {
+            firebaseAuth!!.signInWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(this) { task ->
+                    try{
+                    if (task.isSuccessful) {
+                        progress.dismiss()
+                        finish()
+                        startActivity(Intent(this, MainPage::class.java))
+                    } else {
+                        progress.dismiss()
+                        Toast.makeText(this@LoginActivity, "OOPS! Sigin Unsuccessful.", Toast.LENGTH_SHORT).show()
+                    }
+                    }catch (e:Exception)
+                    {
+                        Log.d("Errorrrrrr: ",e.toString())
+                    }
                 }
-            }
-            .addOnFailureListener { task ->
-                Toast.makeText(this@LoginActivity,"ERROR: "+task.localizedMessage,Toast.LENGTH_SHORT).show()
-                Log.d("LOGINACTIVITY","ERROR: "+task.localizedMessage)
-            }
+                .addOnFailureListener { task ->
+                    Toast.makeText(this@LoginActivity, "ERROR: " + task.localizedMessage, Toast.LENGTH_SHORT).show()
+                    Log.d("LOGINACTIVITY", "ERROR: " + task.localizedMessage)
+                }
+        }
+        catch (e:Exception){
+            Log.d("Errorrrrrr: ",e.toString())
+        }
     }
 
     private fun forgetpass(){

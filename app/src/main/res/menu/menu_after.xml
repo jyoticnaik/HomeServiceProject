@@ -10,5 +10,15 @@
           android:background="?android:attr/selectableItemBackground"
           android:icon="@drawable/cartsym"
           app:showAsAction="ifRoom"/>
+    <item android:id="@+id/profile"
+          android:title="Profile"
+          android:background="?android:attr/selectableItemBackground"
+          android:icon="@drawable/profilesym"
+          app:showAsAction="ifRoom"/>
+    <item android:id="@+id/bookingDetail"
+          android:title="Booking Made"
+          android:background="?android:attr/selectableItemBackground"
+          android:icon="@drawable/trackorder"
+          app:showAsAction="ifRoom"/>
 
 </menu>
