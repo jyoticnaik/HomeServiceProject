@@ -121,7 +121,6 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
             R.id.action_cart->{
                 i = Intent(this,Cart::class.java)
                 startActivity(i)
-                finish()
                 //Toast.makeText(this,"com.example.homeservice.Cart Page Not created yet.",Toast.LENGTH_LONG).show()
                 true
             }
