@@ -45,7 +45,7 @@ class RegistrationPage : AppCompatActivity(), View.OnClickListener {
         //Registring user
 
         if (password == cnfrmpass) {
-            progressDialog!!.setMessage("Registring User")
+            progressDialog!!.setMessage("Registering User")
             progressDialog!!.show()
 
             firebaseAuth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
