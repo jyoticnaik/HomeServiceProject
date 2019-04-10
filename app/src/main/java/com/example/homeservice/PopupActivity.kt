@@ -13,17 +13,19 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.*
 
 class PopupActivity : Activity(), View.OnClickListener {
 
     //  private val myDB = Database(this@PopupActivity)
 
-    private lateinit var firebaseAuth: FirebaseAuth
+    private var firebaseAuth: FirebaseUser? = null
 
     private var customerref: FirebaseFirestore? = FirebaseFirestore.getInstance()
-    private var current_user_email = FirebaseAuth.getInstance().currentUser!!.email.toString()
+    private lateinit var current_user_email: String //= FirebaseAuth.getInstance().currentUser!!.email.toString()
     private var room_count: Int = 0
     private var price_services = 1250
     private var price_beauty = 500
@@ -51,6 +53,14 @@ class PopupActivity : Activity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_popup)
 
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        } else {
+            firebaseAuth = FirebaseAuth.getInstance().currentUser
+            current_user_email = FirebaseAuth.getInstance().currentUser!!.email.toString()
+        }
 
         val dm = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(dm)
@@ -81,31 +91,40 @@ class PopupActivity : Activity(), View.OnClickListener {
         progress.setMessage("Wait while loading...")
         progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
         progress.show()
-        customerref!!.collection("Customers").document(current_user_email).get()
-            .addOnSuccessListener { documentSnapshot ->
-                if (documentSnapshot != null) {
 
-                    room_count = Integer.parseInt(documentSnapshot.get("NoOfRooms").toString())
+        if (firebaseAuth == null) {
+            Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show()
+            progress.dismiss()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        } else {
+            customerref!!.collection("Customers").document(current_user_email).get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot != null) {
 
-                    sroomcount = room_count.toString()
-                    scust_name = documentSnapshot.get("FirstName").toString() + " " + documentSnapshot.get("LastName")
-                    scust_addr = documentSnapshot.get("Address").toString()
-                    scust_mobno = documentSnapshot.get("MobileNo").toString()
+                        room_count = Integer.parseInt(documentSnapshot.get("NoOfRooms").toString())
 
-                    Log.d(
-                        "PopUPActivity",
-                        " " + room_count + " " + sroomcount + " " + scust_name + scust_mobno + scust_addr
-                    )
-                    getIncomingIntent()
+                        sroomcount = room_count.toString()
+                        scust_name =
+                            documentSnapshot.get("FirstName").toString() + " " + documentSnapshot.get("LastName")
+                        scust_addr = documentSnapshot.get("Address").toString()
+                        scust_mobno = documentSnapshot.get("MobileNo").toString()
 
-                    fillData()
-                    progress.dismiss()
-                } else {
-                    progress.dismiss()
-                    Toast.makeText(this, "Error loading room count", Toast.LENGTH_SHORT).show()
+                        Log.d(
+                            "PopUPActivity",
+                            " " + room_count + " " + sroomcount + " " + scust_name + scust_mobno + scust_addr
+                        )
+                        getIncomingIntent()
+
+                        fillData()
+                        progress.dismiss()
+                    } else {
+                        progress.dismiss()
+                        Toast.makeText(this, "Error loading room count", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
 
+        }
 
         addtocart?.setOnClickListener(this)
 
@@ -179,15 +198,15 @@ class PopupActivity : Activity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        Log.d("FirebaseAuth: ", "OOOOONNNNNCLLLICCCK: " + firebaseAuth.toString())
 
-        firebaseAuth = FirebaseAuth.getInstance()
         val progress = ProgressDialog(this)
         progress.setTitle("Loading")
         progress.setMessage("Wait while loading...")
         progress.setCancelable(false) // disable dismiss by tapping outside of the dialog
         progress.show()
 
-        if (firebaseAuth?.getCurrentUser() == null) {
+        if (firebaseAuth == null) {
             Toast.makeText(this, "Please Login First!", Toast.LENGTH_SHORT).show()
             progress.dismiss()
             startActivity(Intent(this, LoginActivity::class.java))

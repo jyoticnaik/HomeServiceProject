@@ -124,12 +124,12 @@ class MainPage : AppCompatActivity(), View.OnClickListener {
                 //Toast.makeText(this,"com.example.homeservice.Cart Page Not created yet.",Toast.LENGTH_LONG).show()
                 true
             }
-            R.id.profile->{
-                //TODO:Create poppage to display userdetails
-                true
-            }
+//            R.id.profile->{
+//                //TODO:Create poppage to display userdetails
+//                true
+//            }
             R.id.bookingDetail ->{
-                //TODO:Create Page to display booked services
+                startActivity(Intent(this,ViewOrderActivity::class.java))
                 true
             }
             else->super.onOptionsItemSelected(item)

@@ -111,7 +111,7 @@ class HomeCleaningPage : AppCompatActivity() {
                                             if (documentSnapshot != null) {
                                                 Log.d("Deep home cleaning", "HELLO")
                                                 pdata3 = "RK : " + documentSnapshot.get("RK").toString() + "\n" +
-                                                        "1BHK : " + documentSnapshot.get("1BHK").toString() + "\n" +
+                                                        "1BHK : " + documentSnapshot.get("1 BHK").toString() + "\n" +
                                                         "2BHK : " + documentSnapshot.get("2 BHK").toString() + "\n" +
                                                         "3BHK : " + documentSnapshot.get("3 BHK").toString() + "\n" +
                                                         "4BHK : " + documentSnapshot.get("4 BHK").toString()
@@ -124,7 +124,7 @@ class HomeCleaningPage : AppCompatActivity() {
                                                             Log.d("Deep home cleaning", "HELLO")
                                                             pdata4 =
                                                                 "RK :" + documentSnapshot.get("RK").toString() + "\n" +
-                                                                        "1BHK :" + documentSnapshot.get("1BHK").toString() + "\n" +
+                                                                        "1BHK :" + documentSnapshot.get("1 BHK").toString() + "\n" +
                                                                         "2BHK :" + documentSnapshot.get("2 BHK").toString() + "\n" +
                                                                         "3BHK :" + documentSnapshot.get("3 BHK").toString() + "\n" +
                                                                         "4BHK :" + documentSnapshot.get("4 BHK").toString()
@@ -246,7 +246,7 @@ class HomeCleaningPage : AppCompatActivity() {
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot != null) {
                         pdata1 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
-                                "1BHK :" + documentSnapshot.get("1BHK").toString() + "\n" +
+                                "1BHK :" + documentSnapshot.get("1 BHK").toString() + "\n" +
                                 "2BHK :" + documentSnapshot.get("2 BHK").toString() + "\n" +
                                 "3BHK :" + documentSnapshot.get("3 BHK").toString() + "\n" +
                                 "4BHK :" + documentSnapshot.get("4 BHK").toString()

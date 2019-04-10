@@ -89,7 +89,7 @@ class Cart : AppCompatActivity(), View.OnClickListener {
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot != null) {
                     scust_addr = documentSnapshot.get("Address").toString()
-                    val bs = BookService("TRUE",txtGrandTotal.text.toString(),scust_addr,carts)
+                    val bs = BookService("Booked",txtGrandTotal.text.toString(),scust_addr,carts)
                     customerref!!.collection("Customers").document(current_user_email).collection("BookingDetails").add(bs).addOnSuccessListener {
                         Toast.makeText(this,"Service Booked!",Toast.LENGTH_SHORT).show()
                         progress.dismiss()
@@ -97,6 +97,11 @@ class Cart : AppCompatActivity(), View.OnClickListener {
                     }.addOnFailureListener {
                         Toast.makeText(this,"Error while booking.",Toast.LENGTH_SHORT).show()
                     }
+
+//                    customerref!!.collection("Customers").document(current_user_email).collection("CartDetails").get().
+//                        .delete()
+//                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+//                        .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) } TODO:delete collection from firebase.
 
                     Database(this).cleanCart()
                 } else {

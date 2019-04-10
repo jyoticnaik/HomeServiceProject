@@ -72,7 +72,7 @@ class RegistrationPage : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this@RegistrationPage, "Could not register. Please Try Again." + task.exception, Toast.LENGTH_LONG).show()
                 }
             }.addOnFailureListener { exception ->
-                Toast.makeText(this,""+ exception,Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,""+ exception.message,Toast.LENGTH_SHORT).show()
             }
         } else {
             Toast.makeText(this, "Please Confirm password correctly.", Toast.LENGTH_LONG).show()

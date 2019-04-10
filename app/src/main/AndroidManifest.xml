@@ -11,8 +11,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        <activity android:name=".AddToCartActivity">
+        <activity android:name=".ViewOrderActivity">
         </activity>
         <activity
                 android:name=".PopupActivity"
