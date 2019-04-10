@@ -33,6 +33,9 @@ class HomeCleaningPage : AppCompatActivity() {
     private var pdata2: String = "Loading..."
     private var pdata3: String = "Loading..."
     private var pdata4: String = "Loading..."
+    private var pdata5: String = "Loading..."
+    private var pdata6: String = "Loading..."
+    private var pdata7: String = "Loading..."
     //private val mImageUrl = ArrayList<Int>()
 
     override fun onStart() {
@@ -251,21 +254,21 @@ class HomeCleaningPage : AppCompatActivity() {
                         customerref!!.collection("Price").document("Chemical Pest Control").get()
                             .addOnSuccessListener { documentSnapshot ->
                                 if (documentSnapshot != null) {
-                                    pdata1 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
+                                    pdata2 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
                                             "1BHK :" + documentSnapshot.get("1 BHK").toString() + "\n" +
                                             "2BHK :" + documentSnapshot.get("2 BHK").toString() + "\n" +
                                             "3BHK :" + documentSnapshot.get("3 BHK").toString() + "\n" +
                                             "4BHK :" + documentSnapshot.get("4 BHK").toString()
-                                    mPrice.add(pdata1)
+                                    mPrice.add(pdata2)
                                     customerref!!.collection("Price").document("Herbal Pest Control").get()
                                         .addOnSuccessListener { documentSnapshot ->
                                             if (documentSnapshot != null) {
-                                                pdata1 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
+                                                pdata3 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
                                                         "1BHK :" + documentSnapshot.get("1 BHK").toString() + "\n" +
                                                         "2BHK :" + documentSnapshot.get("2 BHK").toString() + "\n" +
                                                         "3BHK :" + documentSnapshot.get("3 BHK").toString() + "\n" +
                                                         "4BHK :" + documentSnapshot.get("4 BHK").toString()
-                                                mPrice.add(pdata1)
+                                                mPrice.add(pdata3)
 
                                             }
                                         }
@@ -340,42 +343,42 @@ class HomeCleaningPage : AppCompatActivity() {
                         customerref!!.collection("Price").document("Matte Enamel").get()
                             .addOnSuccessListener { documentSnapshot ->
                                 if (documentSnapshot != null) {
-                                    pdata1 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
+                                    pdata2 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
                                             "1BHK :" + documentSnapshot.get("1BHK").toString() + "\n" +
                                             "2BHK :" + documentSnapshot.get("2BHK").toString() + "\n" +
                                             "3BHK :" + documentSnapshot.get("3BHK").toString() + "\n" +
                                             "4BHK :" + documentSnapshot.get("4BHK").toString()
-                                    mPrice.add(pdata1)
+                                    mPrice.add(pdata2)
                                     customerref!!.collection("Price").document("Satin Finish").get()
                                         .addOnSuccessListener { documentSnapshot ->
                                             if (documentSnapshot != null) {
-                                                pdata1 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
+                                                pdata3 = "RK :" + documentSnapshot.get("RK").toString() + "\n" +
                                                         "1BHK :" + documentSnapshot.get("1BHK").toString() + "\n" +
                                                         "2BHK :" + documentSnapshot.get("2BHK").toString() + "\n" +
                                                         "3BHK :" + documentSnapshot.get("3BHK").toString() + "\n" +
                                                         "4BHK :" + documentSnapshot.get("4BHK").toString()
-                                                mPrice.add(pdata1)
+                                                mPrice.add(pdata3)
                                                 customerref!!.collection("Price").document("Semi-gloss Finish").get()
                                                     .addOnSuccessListener { documentSnapshot ->
                                                         if (documentSnapshot != null) {
-                                                            pdata1 =
+                                                            pdata4 =
                                                                 "RK :" + documentSnapshot.get("RK").toString() + "\n" +
                                                                         "1BHK :" + documentSnapshot.get("1BHK").toString() + "\n" +
                                                                         "2BHK :" + documentSnapshot.get("2BHK").toString() + "\n" +
                                                                         "3BHK :" + documentSnapshot.get("3BHK").toString() + "\n" +
                                                                         "4BHK :" + documentSnapshot.get("4BHK").toString()
-                                                            mPrice.add(pdata1)
+                                                            mPrice.add(pdata4)
 
                                                             customerref!!.collection("Price").document("Gloss_paint Paint").get()
                                                                 .addOnSuccessListener { documentSnapshot ->
                                                                     if (documentSnapshot != null) {
-                                                                        pdata1 =
+                                                                        pdata5 =
                                                                             "RK :" + documentSnapshot.get("RK").toString() + "\n" +
                                                                                     "1BHK :" + documentSnapshot.get("1BHK").toString() + "\n" +
                                                                                     "2BHK :" + documentSnapshot.get("2BHK").toString() + "\n" +
                                                                                     "3BHK :" + documentSnapshot.get("3BHK").toString() + "\n" +
                                                                                     "4BHK :" + documentSnapshot.get("4BHK").toString()
-                                                                        mPrice.add(pdata1)
+                                                                        mPrice.add(pdata5)
 
                                                                     }
                                                                 }
@@ -442,14 +445,14 @@ class HomeCleaningPage : AppCompatActivity() {
                         customerref!!.collection("Price").document("Sensitive Skin").get()
                             .addOnSuccessListener { documentSnapshot ->
                                 if (documentSnapshot != null) {
-                                    pdata1 = "Per Person: " + documentSnapshot.get("Per Person").toString()
-                                    mPrice.add(pdata1)
+                                    pdata2 = "Per Person: " + documentSnapshot.get("Per Person").toString()
+                                    mPrice.add(pdata2)
 
                                     customerref!!.collection("Price").document("Oil Skin").get()
                                         .addOnSuccessListener { documentSnapshot ->
                                             if (documentSnapshot != null) {
-                                                pdata1 = "Per Person: " + documentSnapshot.get("Per Person").toString()
-                                                mPrice.add(pdata1)
+                                                pdata3 = "Per Person: " + documentSnapshot.get("Per Person").toString()
+                                                mPrice.add(pdata3)
                                             }
                                         }
                                         .addOnFailureListener { exception ->
@@ -521,42 +524,42 @@ class HomeCleaningPage : AppCompatActivity() {
                         customerref!!.collection("Price").document("Shampoo & Blow Dry").get()
                             .addOnSuccessListener { documentSnapshot ->
                                 if (documentSnapshot != null) {
-                                    pdata1 = "Per Person: " + documentSnapshot.get("Per Person").toString()
-                                    mPrice.add(pdata1)
+                                    pdata2 = "Per Person: " + documentSnapshot.get("Per Person").toString()
+                                    mPrice.add(pdata2)
 
                                     customerref!!.collection("Price").document("Personalized Color & Highlights").get()
                                         .addOnSuccessListener { documentSnapshot ->
                                             if (documentSnapshot != null) {
-                                                pdata1 = documentSnapshot.get("On Inspection").toString()
-                                                mPrice.add(pdata1)
+                                                pdata3 = documentSnapshot.get("On Inspection").toString()
+                                                mPrice.add(pdata3)
 
                                                 customerref!!.collection("Price").document("Formal Styling").get()
                                                     .addOnSuccessListener { documentSnapshot ->
                                                         if (documentSnapshot != null) {
-                                                            pdata1 = "On Inspection " + documentSnapshot.get("On Inspection").toString()
-                                                            mPrice.add(pdata1)
+                                                            pdata4 = "On Inspection " + documentSnapshot.get("On Inspection").toString()
+                                                            mPrice.add(pdata4)
 
                                                             customerref!!.collection("Price").document("Bridal & Wedding Hairstyles").get()
                                                                 .addOnSuccessListener { documentSnapshot ->
                                                                     if (documentSnapshot != null) {
-                                                                        pdata1 = "Ballerina bun: " + documentSnapshot.get("Ballerina bun").toString() + "\n" +
+                                                                        pdata5 = "Ballerina bun: " + documentSnapshot.get("Ballerina bun").toString() + "\n" +
                                                                                 "Chignon: " + documentSnapshot.get("Chignon").toString() + "\n" +
                                                                                 "Side sweep: " + documentSnapshot.get("Side sweep").toString()
 
-                                                                        mPrice.add(pdata1)
+                                                                        mPrice.add(pdata5)
                                                                         customerref!!.collection("Price").document("Extensions").get()
                                                                             .addOnSuccessListener { documentSnapshot ->
                                                                                 if (documentSnapshot != null) {
-                                                                                    pdata1 = "Brow extension: " + documentSnapshot.get("Brow extension").toString() +  "\n" +
+                                                                                    pdata6 = "Brow extension: " + documentSnapshot.get("Brow extension").toString() +  "\n" +
                                                                                             "Hair extension: " + documentSnapshot.get("Hair extension").toString() + "\n" +
                                                                                             "Lash extension: " + documentSnapshot.get("Lash extension").toString()
-                                                                                    mPrice.add(pdata1)
+                                                                                    mPrice.add(pdata6)
                                                                                     customerref!!.collection("Price").document("Hair Smoothing System").get()
                                                                                         .addOnSuccessListener { documentSnapshot ->
                                                                                             if (documentSnapshot != null) {
-                                                                                                pdata1 = "Flat Ironing: " + documentSnapshot.get("Flat Ironing").toString() + "\n" +
+                                                                                                pdata7 = "Flat Ironing: " + documentSnapshot.get("Flat Ironing").toString() + "\n" +
                                                                                                         "Root touch up: " + documentSnapshot.get("Root touch up").toString()
-                                                                                                mPrice.add(pdata1)
+                                                                                                mPrice.add(pdata7)
                                                                                             }
                                                                                         }
                                                                                         .addOnFailureListener { exception ->
@@ -661,32 +664,32 @@ class HomeCleaningPage : AppCompatActivity() {
                         customerref!!.collection("Price").document("Eyes").get()
                             .addOnSuccessListener {documentSnapshot ->
                                 if(documentSnapshot != null) {
-                                    pdata1 = "Brow Tinting: " + documentSnapshot.get("Brow Tinting").toString() + "\n" +
+                                    pdata2 = "Brow Tinting: " + documentSnapshot.get("Brow Tinting").toString() + "\n" +
                                             "Lash Tinting: " + documentSnapshot.get("Lash Tinting").toString()
-                                    mPrice.add(pdata1)
+                                    mPrice.add(pdata2)
 
                                     customerref!!.collection("Price").document("Face Contouring").get()
                                         .addOnSuccessListener {documentSnapshot ->
                                             if(documentSnapshot != null) {
-                                                pdata1 = "Nutribios Dark Circle Treatment: " + documentSnapshot.get("Nutribios Dark Circle Treatment").toString() + "\n" +
+                                                pdata3 = "Nutribios Dark Circle Treatment: " + documentSnapshot.get("Nutribios Dark Circle Treatment").toString() + "\n" +
                                                         "Nutribios Kiwi Cool Fruit Facial: " + documentSnapshot.get("Nutribios Kiwi Cool Fruit Facial").toString() + "\n" +
                                                         "Nutribios Lumiance Moisture Pearl Facial" + documentSnapshot.get("Nutribios Lumiance Moisture Pearl Facial")+ "\n" +
                                                         "Ozone Xpress Facial" + documentSnapshot.get("Ozone Xpress Facial").toString()
-                                                mPrice.add(pdata1)
+                                                mPrice.add(pdata3)
 
                                                 customerref!!.collection("Price").document("Lips").get()
                                                     .addOnSuccessListener {documentSnapshot ->
                                                         if(documentSnapshot != null) {
-                                                            pdata1 = "On inspection: " + documentSnapshot.get("on inspection").toString() + "\n" +
-                                                            mPrice.add(pdata1)
+                                                            pdata4 = "On inspection: " + documentSnapshot.get("on inspection").toString() + "\n" +
+                                                            mPrice.add(pdata4)
 
                                                             customerref!!.collection("Price").document("False Lash Application").get()
                                                                 .addOnSuccessListener {documentSnapshot ->
                                                                     if(documentSnapshot != null) {
-                                                                        pdata1 = "Individual Flare Lashes: " + documentSnapshot.get("Individual Flare Lashes").toString() + "\n" +
+                                                                        pdata5 = "Individual Flare Lashes: " + documentSnapshot.get("Individual Flare Lashes").toString() + "\n" +
                                                                                 "Individual Single Lashes : " + documentSnapshot.get("Individual Single Lashes ").toString() + "\n" +
                                                                                 "Strip Lashes" + documentSnapshot.get("Strip Lashes").toString()
-                                                                        mPrice.add(pdata1)
+                                                                        mPrice.add(pdata5)
                                                                     }
                                                                 }
                                                                 .addOnFailureListener { exception ->

@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <!--Custom colors for app-->
+    <color name="white">#FFFFFF</color>
     <color name="endcolor">#00695C</color>
     <color name="endcolor_light">#CC14A06E</color>
     <color name="light">#CC9695B1</color>

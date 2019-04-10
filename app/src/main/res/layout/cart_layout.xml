@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content">
 
             <TextView
+                    android:textColor="#000000"
                     android:id="@+id/cart_service_name"
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical|start"

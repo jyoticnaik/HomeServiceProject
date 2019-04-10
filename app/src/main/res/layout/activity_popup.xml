@@ -21,6 +21,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/user_confirmation_head"
                 android:text="DETAILS"
+                android:textStyle="bold"
                 android:layout_marginBottom="4dp"
                 android:textAlignment="center"
                 android:textSize="17sp"
@@ -38,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                 <TextView
+                        android:textColor="#000000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/customer_name"
@@ -46,6 +48,7 @@
                         android:layout_marginBottom="2dp"
                         android:text="CUSTOMER NAME"/>
                 <TextView
+                        android:textColor="#000000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/customer_mobileno"
@@ -54,6 +57,7 @@
                         android:layout_marginBottom="2dp"
                         android:text="CUSTOMER MOBILENO"/>
                 <TextView
+                        android:textColor="#000000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/customer_address"
@@ -62,6 +66,7 @@
                         android:layout_marginBottom="2dp"
                         android:text="CUSTOMER ADDRESS"/>
                 <TextView
+                        android:textColor="#000000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/customer_roocount"
@@ -70,6 +75,7 @@
                         android:layout_marginBottom="2dp"
                         android:text="ROOM COUNT"/>
                 <TextView
+                        android:textColor="#000000"
                         android:id="@+id/selected_service"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -78,6 +84,7 @@
                         android:layout_marginBottom="2dp"
                         android:text="SELECTED SERVICE"/>
                 <TextView
+                        android:textColor="#000000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/service_price"
@@ -86,6 +93,7 @@
                         android:layout_marginBottom="2dp"
                         android:text="SERVICE PRICE"/>
                 <TextView
+                        android:textColor="#000000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
@@ -102,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:background="#272541"
                 android:textSize="14sp"
+                android:textColor="@color/white"
                 android:elevation="6dp"
                 android:text="ADD TO CART"
                 android:paddingStart="2dp"

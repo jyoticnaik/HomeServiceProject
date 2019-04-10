@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:background="#272541"
                 android:elevation="6dp"
+                android:textColor="@color/white"
                 android:text="@string/proceed"
                 android:textSize="20sp"/>
     </LinearLayout>

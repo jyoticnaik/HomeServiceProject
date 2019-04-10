@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
         android:padding="16dp"
-        tools:context=".AddToCartActivity">
+        tools:context=".Cart">
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/listCart"
@@ -58,6 +58,7 @@
                     android:textSize="14sp"
                     android:elevation="6dp"
                     android:text="BOOK NOW"
+                    android:textColor="@color/white"
                     android:layout_marginRight="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_alignParentBottom="true"
